@@ -5,6 +5,7 @@
  */
 package jhospital.view.Cadastro;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 /**
@@ -199,9 +200,17 @@ public class CadastroDePacientesView extends javax.swing.JPanel {
     }//GEN-LAST:event_comboBoxPlanoDeSaudeActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        // TODO add your handling code here:
+     
+        if (JOptionPane.showConfirmDialog(this, "deseja mesmo fechar o cadastro, sem salvar?","Confirmação", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+        {
+          tabbedPane.remove(this);
+          tabbedPane.validate();
+          tabbedPane.repaint();
+        }
+        
+        
     }//GEN-LAST:event_buttonCancelarActionPerformed
-private JTabbedPane tabbedPane;
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
@@ -225,4 +234,4 @@ private JTabbedPane tabbedPane;
     private javax.swing.JTextField textFieldQuarto;
     private javax.swing.JTextField textFieldTelefone;
     // End of variables declaration//GEN-END:variables
-}
+    private JTabbedPane tabbedPane;}
