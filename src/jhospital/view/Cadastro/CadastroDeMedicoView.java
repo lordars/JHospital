@@ -5,6 +5,7 @@
  */
 package jhospital.view.Cadastro;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 /**
@@ -175,7 +176,12 @@ public class CadastroDeMedicoView extends javax.swing.JPanel {
     }//GEN-LAST:event_textFieldEmailActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        // TODO add your handling code here:
+  if (JOptionPane.showConfirmDialog(this, "deseja mesmo fechar o cadastro, sem salvar?","Confirmação", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+        {
+          tabbedPane.remove(this);
+          tabbedPane.validate();
+          tabbedPane.repaint();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
  private JTabbedPane tabbedPane;
