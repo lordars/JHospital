@@ -14,7 +14,17 @@ import javax.swing.JTabbedPane;
  */
 public class CadastroDePacientesView extends javax.swing.JPanel {
 
-    
+  private void limparDados() {
+      textFieldNome.setText("");
+      textFieldEmail.setText("");
+      textFieldEndereco.setText("");
+      textFieldTelefone.setText("");
+      textFieldQuarto.setText("");
+      textFieldDoenca.setText("");
+      textFieldDiasInternado.setText("");
+      comboBoxPlanoDeSaude.setSelectedIndex(0);
+  }
+          
     
     public CadastroDePacientesView (JTabbedPane tabbedPanel) {
         
