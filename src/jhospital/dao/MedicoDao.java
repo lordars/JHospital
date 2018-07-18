@@ -21,9 +21,9 @@ import jhospital.model.Medico;
  *
  * @author Rebecca
  */
-public class MedicoJpaController implements Serializable {
+public class MedicoDao implements Serializable {
 
-    public MedicoJpaController(EntityManagerFactory emf) {
+    public MedicoDao(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;

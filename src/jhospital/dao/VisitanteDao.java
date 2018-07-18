@@ -21,9 +21,9 @@ import jhospital.model.Visitante;
  *
  * @author Rebecca
  */
-public class VisitanteJpaController implements Serializable {
+public class VisitanteDao implements Serializable {
 
-    public VisitanteJpaController(EntityManagerFactory emf) {
+    public VisitanteDao(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;

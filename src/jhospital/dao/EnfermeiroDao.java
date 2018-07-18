@@ -15,15 +15,15 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import jhospital.dao.exceptions.NonexistentEntityException;
 import jhospital.dao.exceptions.PreexistingEntityException;
-import jhospital.model.Paciente;
+import jhospital.model.Enfermeiro;
 
 /**
  *
  * @author Rebecca
  */
-public class PacienteJpaController implements Serializable {
+public class EnfermeiroDao implements Serializable {
 
-    public PacienteJpaController(EntityManagerFactory emf) {
+    public EnfermeiroDao(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,16 +32,16 @@ public class PacienteJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Paciente paciente) throws PreexistingEntityException, Exception {
+    public void create(Enfermeiro enfermeiro) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(paciente);
+            em.persist(enfermeiro);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findPaciente(paciente.getId()) != null) {
-                throw new PreexistingEntityException("Paciente " + paciente + " already exists.", ex);
+            if (findEnfermeiro(enfermeiro.getId()) != null) {
+                throw new PreexistingEntityException("Enfermeiro " + enfermeiro + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -51,19 +51,19 @@ public class PacienteJpaController implements Serializable {
         }
     }
 
-    public void edit(Paciente paciente) throws NonexistentEntityException, Exception {
+    public void edit(Enfermeiro enfermeiro) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            paciente = em.merge(paciente);
+            enfermeiro = em.merge(enfermeiro);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = paciente.getId();
-                if (findPaciente(id) == null) {
-                    throw new NonexistentEntityException("The paciente with id " + id + " no longer exists.");
+                Integer id = enfermeiro.getId();
+                if (findEnfermeiro(id) == null) {
+                    throw new NonexistentEntityException("The enfermeiro with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -79,14 +79,14 @@ public class PacienteJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Paciente paciente;
+            Enfermeiro enfermeiro;
             try {
-                paciente = em.getReference(Paciente.class, id);
-                paciente.getId();
+                enfermeiro = em.getReference(Enfermeiro.class, id);
+                enfermeiro.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The paciente with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The enfermeiro with id " + id + " no longer exists.", enfe);
             }
-            em.remove(paciente);
+            em.remove(enfermeiro);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -95,19 +95,19 @@ public class PacienteJpaController implements Serializable {
         }
     }
 
-    public List<Paciente> findPacienteEntities() {
-        return findPacienteEntities(true, -1, -1);
+    public List<Enfermeiro> findEnfermeiroEntities() {
+        return findEnfermeiroEntities(true, -1, -1);
     }
 
-    public List<Paciente> findPacienteEntities(int maxResults, int firstResult) {
-        return findPacienteEntities(false, maxResults, firstResult);
+    public List<Enfermeiro> findEnfermeiroEntities(int maxResults, int firstResult) {
+        return findEnfermeiroEntities(false, maxResults, firstResult);
     }
 
-    private List<Paciente> findPacienteEntities(boolean all, int maxResults, int firstResult) {
+    private List<Enfermeiro> findEnfermeiroEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Paciente.class));
+            cq.select(cq.from(Enfermeiro.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -119,20 +119,20 @@ public class PacienteJpaController implements Serializable {
         }
     }
 
-    public Paciente findPaciente(Integer id) {
+    public Enfermeiro findEnfermeiro(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Paciente.class, id);
+            return em.find(Enfermeiro.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getPacienteCount() {
+    public int getEnfermeiroCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Paciente> rt = cq.from(Paciente.class);
+            Root<Enfermeiro> rt = cq.from(Enfermeiro.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
