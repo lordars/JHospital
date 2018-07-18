@@ -9,9 +9,12 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -30,10 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Visitante.findByTelefone", query = "SELECT v FROM Visitante v WHERE v.telefone = :telefone")
     , @NamedQuery(name = "Visitante.findByEndereco", query = "SELECT v FROM Visitante v WHERE v.endereco = :endereco")
     , @NamedQuery(name = "Visitante.findByPaciente", query = "SELECT v FROM Visitante v WHERE v.paciente = :paciente")})
+@SequenceGenerator (name = "SEQ_STORE", sequenceName = "Visitante_seq", allocationSize=20)
 public class Visitante implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue (strategy= GenerationType.AUTO, generator="SEQ_STORE")
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
