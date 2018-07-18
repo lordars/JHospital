@@ -7,6 +7,7 @@ package jhospital.view.Cadastro;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import jhospital.controller.PacienteController;
 
 /**
  *
@@ -101,6 +102,11 @@ public class CadastroDePacientesView extends javax.swing.JPanel {
         });
 
         buttonSalvar.setText("Salvar");
+        buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvarActionPerformed(evt);
+            }
+        });
 
         buttonCancelar.setText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -220,6 +226,33 @@ public class CadastroDePacientesView extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+if (textFieldNome != null && !textFieldNome.getText().equals("")&& textFieldEmail != null && !textFieldEmail.getText().equals("")
+        && textFieldEndereco != null && !textFieldEndereco.getText().equals("") && textFieldDoenca != null && !textFieldDoenca.getText().equals("")
+        ) {
+    PacienteController pc = new PacienteController();
+    
+    try { 
+        pc.inserir (textFieldNome.getText(),
+                    textFieldEmail.getText(),
+                    textFieldEndereco.getText(),
+                    textFieldTelefone.getText(),
+                    textFieldQuarto.getText(),
+                    textFieldDoenca.getText(),
+                    textFieldDiasInternado.getText(),
+                    (String)comboBoxPlanoDeSaude.getSelectedItem());
+        JOptionPane.showMessageDialog(this,"Contato Salvo com Suceso!","Sucesso",JOptionPane.INFORMATION_MESSAGE);
+        limparDados();
+    
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,"Não foi posivel Salvar contato\n" + e.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }} else
+{ 
+        JOptionPane.showMessageDialog(this, "O nome, email, endereco e doença do" + "paciente são campos obrigatorios!", "Error", JOptionPane.ERROR_MESSAGE);
+}      
+        
+    }//GEN-LAST:event_buttonSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
