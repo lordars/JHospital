@@ -23,13 +23,13 @@ import jhospital.model.Visitante;
  */
 public class VisitanteDao implements Serializable {
 
-    public VisitanteDao(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-    private EntityManagerFactory emf = null;
+//    public VisitanteDao(EntityManagerFactory emf) {
+//        this.emf = emf;
+//    }
+//    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return ConexaoJPA.createEntityManager();
     }
 
     public void create(Visitante visitante) throws PreexistingEntityException, Exception {

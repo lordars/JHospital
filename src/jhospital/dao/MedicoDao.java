@@ -23,13 +23,13 @@ import jhospital.model.Medico;
  */
 public class MedicoDao implements Serializable {
 
-    public MedicoDao(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-    private EntityManagerFactory emf = null;
+//    public MedicoDao(EntityManagerFactory emf) {
+//        this.emf = emf;
+//    }
+//    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return ConexaoJPA.createEntityManager();
     }
 
     public void create(Medico medico) throws PreexistingEntityException, Exception {

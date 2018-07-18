@@ -23,13 +23,13 @@ import jhospital.model.Enfermeiro;
  */
 public class EnfermeiroDao implements Serializable {
 
-    public EnfermeiroDao(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-    private EntityManagerFactory emf = null;
+//    public EnfermeiroDao(EntityManagerFactory emf) {
+//        this.emf = emf;
+//    }
+//    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        return ConexaoJPA.createEntityManager();
     }
 
     public void create(Enfermeiro enfermeiro) throws PreexistingEntityException, Exception {
