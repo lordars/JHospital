@@ -228,8 +228,14 @@ public class CadastroDePacientesView extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-if (textFieldNome != null && !textFieldNome.getText().equals("")&& textFieldEmail != null && !textFieldEmail.getText().equals("")
-        && textFieldEndereco != null && !textFieldEndereco.getText().equals("") && textFieldDoenca != null && !textFieldDoenca.getText().equals("")
+if (textFieldNome != null &&
+        !textFieldNome.getText().equals("")&&
+        textFieldEmail != null && 
+        !textFieldEmail.getText().equals("")&&
+        textFieldEndereco != null &&
+        !textFieldEndereco.getText().equals("") && 
+        textFieldDoenca != null && 
+        !textFieldDoenca.getText().equals("")
         ) {
     PacienteController pc = new PacienteController();
     
@@ -246,7 +252,7 @@ if (textFieldNome != null && !textFieldNome.getText().equals("")&& textFieldEmai
         limparDados();
     
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this,"Não foi posivel Salvar contato\n" + e.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Não foi posivel Salvar contato \n" + e.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE );
     }} else
 { 
         JOptionPane.showMessageDialog(this, "O nome, email, endereco e doença do" + "paciente são campos obrigatorios!", "Error", JOptionPane.ERROR_MESSAGE);
