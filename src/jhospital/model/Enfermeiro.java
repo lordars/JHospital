@@ -20,17 +20,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Rebecca
  */
 @Entity
-@Table(name = "visitante")
+@Table(name = "enfermeiro")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Visitante.findAll", query = "SELECT v FROM Visitante v")
-    , @NamedQuery(name = "Visitante.findById", query = "SELECT v FROM Visitante v WHERE v.id = :id")
-    , @NamedQuery(name = "Visitante.findByNome", query = "SELECT v FROM Visitante v WHERE v.nome = :nome")
-    , @NamedQuery(name = "Visitante.findByEmail", query = "SELECT v FROM Visitante v WHERE v.email = :email")
-    , @NamedQuery(name = "Visitante.findByTelefone", query = "SELECT v FROM Visitante v WHERE v.telefone = :telefone")
-    , @NamedQuery(name = "Visitante.findByEndereco", query = "SELECT v FROM Visitante v WHERE v.endereco = :endereco")
-    , @NamedQuery(name = "Visitante.findByPaciente", query = "SELECT v FROM Visitante v WHERE v.paciente = :paciente")})
-public class Visitante implements Serializable {
+    @NamedQuery(name = "Enfermeiro.findAll", query = "SELECT e FROM Enfermeiro e")
+    , @NamedQuery(name = "Enfermeiro.findById", query = "SELECT e FROM Enfermeiro e WHERE e.id = :id")
+    , @NamedQuery(name = "Enfermeiro.findByNome", query = "SELECT e FROM Enfermeiro e WHERE e.nome = :nome")
+    , @NamedQuery(name = "Enfermeiro.findByEmail", query = "SELECT e FROM Enfermeiro e WHERE e.email = :email")
+    , @NamedQuery(name = "Enfermeiro.findByTelefone", query = "SELECT e FROM Enfermeiro e WHERE e.telefone = :telefone")
+    , @NamedQuery(name = "Enfermeiro.findByEndereco", query = "SELECT e FROM Enfermeiro e WHERE e.endereco = :endereco")
+    , @NamedQuery(name = "Enfermeiro.findByHorasmensais", query = "SELECT e FROM Enfermeiro e WHERE e.horasmensais = :horasmensais")
+    , @NamedQuery(name = "Enfermeiro.findByValordashoras", query = "SELECT e FROM Enfermeiro e WHERE e.valordashoras = :valordashoras")})
+public class Enfermeiro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,24 +50,24 @@ public class Visitante implements Serializable {
     @Basic(optional = false)
     @Column(name = "endereco")
     private String endereco;
-    @Basic(optional = false)
-    @Column(name = "paciente")
-    private String paciente;
+    @Column(name = "horasmensais")
+    private Integer horasmensais;
+    @Column(name = "valordashoras")
+    private Integer valordashoras;
 
-    public Visitante() {
+    public Enfermeiro() {
     }
 
-    public Visitante(Integer id) {
+    public Enfermeiro(Integer id) {
         this.id = id;
     }
 
-    public Visitante(Integer id, String nome, String email, String telefone, String endereco, String paciente) {
+    public Enfermeiro(Integer id, String nome, String email, String telefone, String endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.paciente = paciente;
     }
 
     public Integer getId() {
@@ -109,12 +110,20 @@ public class Visitante implements Serializable {
         this.endereco = endereco;
     }
 
-    public String getPaciente() {
-        return paciente;
+    public Integer getHorasmensais() {
+        return horasmensais;
     }
 
-    public void setPaciente(String paciente) {
-        this.paciente = paciente;
+    public void setHorasmensais(Integer horasmensais) {
+        this.horasmensais = horasmensais;
+    }
+
+    public Integer getValordashoras() {
+        return valordashoras;
+    }
+
+    public void setValordashoras(Integer valordashoras) {
+        this.valordashoras = valordashoras;
     }
 
     @Override
@@ -127,10 +136,10 @@ public class Visitante implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Visitante)) {
+        if (!(object instanceof Enfermeiro)) {
             return false;
         }
-        Visitante other = (Visitante) object;
+        Enfermeiro other = (Enfermeiro) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -139,7 +148,7 @@ public class Visitante implements Serializable {
 
     @Override
     public String toString() {
-        return "jhospital.model.Visitante[ id=" + id + " ]";
+        return "jhospital.model.Enfermeiro[ id=" + id + " ]";
     }
     
 }

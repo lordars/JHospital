@@ -6,7 +6,7 @@
 package jhospital.controller;
 
 import java.util.List;
-import jhospital.model.Enfermero;
+import jhospital.model.Enfermeiro;
 
 /**
  *
@@ -30,7 +30,7 @@ public class EnfermeroController {
                           throws Exception {
                       
                   }
-                  public List<Enfermero> buscar (String nome)
+                  public List<Enfermeiro> buscar (String nome)
                     throws Exception {
         return null;
                       
